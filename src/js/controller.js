@@ -1,4 +1,8 @@
 import icons from '../img/icons.svg';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'core-js/stable';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'regenerator-runtime/runtime';
 
 const recipeContainer = document.querySelector('.recipe');
 

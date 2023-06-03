@@ -1,0 +1,20 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "repository": "https://github.com/Quiddlee/Forkify.git",
+  "scripts": {
+    "eslint": "npx eslint src/js/*.js",
+    "dev": "yarn run eslint && parcel index.html",
+    "build": "yarn run eslint && parcel build index.html"
+  },
+  "author": "Bogdan Scherbina",
+  "license": "MIT",
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.9.1",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "husky": "^8.0.3",
+    "parcel": "^2.9.1"
+  }
+}

@@ -3,11 +3,8 @@ import icons from '../../img/icons.svg';
 
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
-
   #errorMessage = 'We could not find that recipe. Please try another one!';
-
   #data;
-
   #message = '';
 
   render(data) {
@@ -54,14 +51,14 @@ class RecipeView {
 
   renderMessage(message = this.#message) {
     const markup = `
-        <div class="message">
-          <div>
-            <svg>
-              <use href="${icons}#icon-smile"></use>
-            </svg>
-          </div>
-          <p>${message}</p>
+      <div class="message">
+        <div>
+          <svg>
+            <use href="${icons}#icon-smile"></use>
+          </svg>
         </div>
+        <p>${message}</p>
+      </div>
     `;
 
     this.#clear();

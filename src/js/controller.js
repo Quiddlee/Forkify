@@ -1,5 +1,5 @@
 import * as model from './model';
-import recipeView from './views/recipeView';
+import { addHandlerRender, recipeView } from './views/recipeView';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -19,6 +19,7 @@ const controlRecipes = async () => {
   }
 };
 
-['hashchange', 'load'].forEach((evt) =>
-  window.addEventListener(evt, controlRecipes),
-);
+const init = () => {
+  addHandlerRender(controlRecipes);
+};
+init();

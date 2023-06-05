@@ -8,6 +8,8 @@ class RecipeView {
 
   #data;
 
+  #message = '';
+
   render(data) {
     this.#data = data;
     this.#clear();
@@ -44,6 +46,22 @@ class RecipeView {
         </div>
         <p>${message}</p>
       </div>
+    `;
+
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderMessage(message = this.#message) {
+    const markup = `
+        <div class="message">
+          <div>
+            <svg>
+              <use href="${icons}#icon-smile"></use>
+            </svg>
+          </div>
+          <p>${message}</p>
+        </div>
     `;
 
     this.#clear();

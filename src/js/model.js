@@ -6,24 +6,17 @@ export const state = {
 };
 
 export const loadRecipe = async (id) => {
-  try {
-    const data = await getJSON(`${API_URL}/${id}`);
+  const data = await getJSON(`${API_URL}/${id}`);
 
-    const { recipe } = data.data;
-    state.recipe = {
-      id: recipe.id,
-      title: recipe.title,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time,
-      ingredients: recipe.ingredients,
-    };
-  } catch (e) {
-    // alert(e);
-    // Temp error handling
-    // eslint-disable-next-line no-console
-    console.error(`${e}💥💥💥💥`);
-  }
+  const { recipe } = data.data;
+  state.recipe = {
+    id: recipe.id,
+    title: recipe.title,
+    publisher: recipe.publisher,
+    sourceUrl: recipe.source_url,
+    image: recipe.image_url,
+    servings: recipe.servings,
+    cookingTime: recipe.cooking_time,
+    ingredients: recipe.ingredients,
+  };
 };

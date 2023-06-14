@@ -15,5 +15,6 @@ module.exports = {
       'always',
       { exceptAfterSingleLine: true },
     ],
+    'no-underscore-dangle': 'off',
   },
 };

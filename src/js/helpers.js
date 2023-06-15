@@ -1,5 +1,9 @@
 import { TIMEOUT_SECONDS } from './config';
 
+/**
+ * @param s {number}
+ * @returns {Promise<error>}
+ */
 const timeout = (s) =>
   new Promise((_, reject) => {
     setTimeout(() => {
@@ -7,6 +11,10 @@ const timeout = (s) =>
     }, s * 1000);
   });
 
+/**
+ * @param url {string}
+ * @returns {Promise<Object>}
+ */
 const getJSON = async (url) => {
   const res = await Promise.race([fetch(url), timeout(TIMEOUT_SECONDS)]);
   const data = await res.json();

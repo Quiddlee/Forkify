@@ -12,7 +12,6 @@ export const state = {
 };
 
 /**
- *
  * @param id {string}
  * @returns {Promise<void>}
  */
@@ -32,6 +31,10 @@ export const loadRecipe = async (id) => {
   };
 };
 
+/**
+ * @param query
+ * @returns {Promise<void>}
+ */
 export const loadSearchResults = async (query) => {
   state.search.query = query;
 

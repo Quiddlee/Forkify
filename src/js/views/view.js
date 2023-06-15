@@ -3,6 +3,10 @@ import icons from '../../img/icons.svg';
 export default class View {
   _data;
 
+  /**
+   * @param data {[] | {}}
+   * @returns {void}
+   */
   render(data) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
@@ -15,6 +19,9 @@ export default class View {
     );
   }
 
+  /**
+   * @private
+   */
   _clear() {
     this._parentElement.innerHTML = '';
   }
@@ -32,6 +39,9 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   };
 
+  /**
+   * @param message {string}
+   */
   renderError(message = this._errorMessage) {
     const markup = `
       <div class="error">
@@ -48,6 +58,9 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
+  /**
+   * @param message {string}
+   */
   renderMessage(message = this._message) {
     const markup = `
       <div class="message">

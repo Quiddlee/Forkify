@@ -5,10 +5,22 @@ class ResultsView extends View {
   _errorMessage = 'No recipes found for your query! Please try again!';
   _message = '';
 
+  /**
+   * @returns {string}
+   * @private
+   */
   _generateMarkup() {
     return this._data.map(ResultsView._generateMarkupPreview).join();
   }
 
+  /**
+   * @param id {number}
+   * @param image {string}
+   * @param publisher {string}
+   * @param title {string}
+   * @returns {string}
+   * @private
+   */
   static _generateMarkupPreview({ id, image, publisher, title }) {
     return `
       <li class="preview">

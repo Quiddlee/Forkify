@@ -7,6 +7,10 @@ class RecipeView extends View {
   _errorMessage = 'We could not find that recipe. Please try another one!';
   _message = '';
 
+  /**
+   * @returns {string}
+   * @private
+   */
   _generateMarkup() {
     return `
         <figure class="recipe__fig">
@@ -91,6 +95,13 @@ class RecipeView extends View {
     `;
   }
 
+  /**
+   * @param quantity {number}
+   * @param unit {string}
+   * @param description {string}
+   * @returns {string}
+   * @private
+   */
   static _generateMarkupIngredients({ quantity, unit, description }) {
     return `
       <li class="recipe__ingredient">
@@ -109,6 +120,9 @@ class RecipeView extends View {
   }
 }
 
+/**
+ * @param handler {() => void}
+ */
 const addHandlerRender = (handler) => {
   ['hashchange', 'load'].forEach((evt) =>
     window.addEventListener(evt, handler),

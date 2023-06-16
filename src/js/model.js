@@ -1,4 +1,4 @@
-import { API_URL, RES_PER_PAGE } from './config';
+import { API_URL, DEFAULT_PAGE, RES_PER_PAGE } from './config';
 import getJSON from './helpers';
 
 export const state = {
@@ -7,7 +7,7 @@ export const state = {
     query: '',
     results: [],
     resultsPerPage: RES_PER_PAGE,
-    page: 1,
+    page: DEFAULT_PAGE,
   },
 };
 

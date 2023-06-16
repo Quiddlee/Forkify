@@ -20,6 +20,38 @@ export default class View {
 
   /**
    * @param data {Object[]}
+   */
+  update(data) {
+    if (View._isDataNotValid(data)) this.renderError();
+
+    this._data = data;
+    const newMarkup = this._generateMarkup();
+
+    const virtualDom = document
+      .createRange()
+      .createContextualFragment(newMarkup);
+    const newElements = virtualDom.querySelectorAll('*');
+    const currElements = this._parentElement.querySelectorAll('*');
+
+    newElements.forEach((newEl, i) => {
+      const currEl = currElements[i];
+
+      if (newEl.isEqualNode(currEl)) return;
+
+      // updates changed text
+      if (newEl.firstChild?.nodeValue.trim() !== '') {
+        currEl.textContent = newEl.textContent;
+      }
+
+      // updates changed attributes
+      [...newEl.attributes].forEach((attr) =>
+        currEl.setAttribute(attr.name, attr.value),
+      );
+    });
+  }
+
+  /**
+   * @param data {Object[]}
    * @returns {boolean}
    * @private
    */

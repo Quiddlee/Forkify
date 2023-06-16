@@ -5,17 +5,18 @@ export default class View {
 
   /**
    * @param data {[] | {}}
-   * @returns {void}
+   * @param render {boolean}
    */
-  render(data) {
+  render(data, render = true) {
     if (View._isDataNotValid(data)) return this.renderError();
 
     this._data = data;
+    const markup = this._generateMarkup();
+
+    if (!render) return markup;
+
     this._clear();
-    return this._parentElement.insertAdjacentHTML(
-      'afterbegin',
-      this._generateMarkup(),
-    );
+    return this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
   /**

@@ -8,8 +8,7 @@ export default class View {
    * @returns {void}
    */
   render(data) {
-    if (!data || (Array.isArray(data) && data.length === 0))
-      return this.renderError();
+    if (View._isDataNotValid(data)) return this.renderError();
 
     this._data = data;
     this._clear();
@@ -17,6 +16,15 @@ export default class View {
       'afterbegin',
       this._generateMarkup(),
     );
+  }
+
+  /**
+   * @param data {Object[]}
+   * @returns {boolean}
+   * @private
+   */
+  static _isDataNotValid(data) {
+    return !data || (Array.isArray(data) && data.length === 0);
   }
 
   /**

@@ -13,6 +13,7 @@ const controlRecipes = async () => {
     if (!id) return;
 
     recipeView.renderSpinner();
+    resultsView.update(model.getSearchResultsPage());
 
     await model.loadRecipe(id);
 

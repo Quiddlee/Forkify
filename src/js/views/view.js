@@ -22,8 +22,6 @@ export default class View {
    * @param data {Object[]}
    */
   update(data) {
-    if (View._isDataNotValid(data)) this.renderError();
-
     this._data = data;
     const newMarkup = this._generateMarkup();
 

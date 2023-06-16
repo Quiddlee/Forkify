@@ -14,7 +14,7 @@ class ResultsView extends View {
   }
 
   /**
-   * @param id {number}
+   * @param id {string}
    * @param image {string}
    * @param publisher {string}
    * @param title {string}
@@ -22,9 +22,13 @@ class ResultsView extends View {
    * @private
    */
   static _generateMarkupPreview({ id, image, publisher, title }) {
+    const currId = window.location.hash.slice(1);
+
     return `
       <li class="preview">
-        <a class="preview__link" href="#${id}">
+        <a class="preview__link ${
+          currId === id && 'preview__link--active'
+        }" href="#${id}">
           <figure class="preview__fig">
             <img src="${image}" alt="${title}" />
           </figure>

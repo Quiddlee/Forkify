@@ -36,6 +36,7 @@ export const loadRecipe = async (id) => {
  * @returns {Promise<void>}
  */
 export const loadSearchResults = async (query) => {
+  state.search.page = DEFAULT_PAGE;
   state.search.query = query;
 
   const {

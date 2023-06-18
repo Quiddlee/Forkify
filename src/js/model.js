@@ -1,5 +1,5 @@
 import { API_KEY, API_URL, DEFAULT_PAGE, RES_PER_PAGE } from './config';
-import getJSON, { sentJSON } from './helpers';
+import AJAX from './helpers';
 
 export const state = {
   recipe: {},
@@ -37,7 +37,7 @@ const createRecipeObject = (data) => {
  * @returns {Promise<void>}
  */
 export const loadRecipe = async (id) => {
-  const data = await getJSON(`${API_URL}${id}`);
+  const data = await AJAX(`${API_URL}${id}?key=${API_KEY}`);
   state.recipe = createRecipeObject(data);
 
   if (state.bookmarks.some(({ id: bookmarkId }) => bookmarkId === id)) {
@@ -57,13 +57,15 @@ export const loadSearchResults = async (query) => {
 
   const {
     data: { recipes },
-  } = await getJSON(`${API_URL}?search=${query}`);
+  } = await AJAX(`${API_URL}?search=${query}&key=${API_KEY}`);
 
   state.search.results = recipes.map((rec) => ({
     id: rec.id,
     title: rec.title,
     publisher: rec.publisher,
     image: rec.image_url,
+
+    ...(rec.key && { key: rec.key }),
   }));
 };
 
@@ -135,7 +137,7 @@ export const uploadRecipe = async (newRecipe) => {
   const ingredients = Object.entries(newRecipe)
     .filter(([ing, val]) => ing.startsWith('ingredient') && val)
     .map(([, ing]) => {
-      const ingArr = ing.replaceAll(' ', '').split(',');
+      const ingArr = ing.split(',').map((el) => el.trim());
 
       if (ingArr.length !== 3)
         throw new Error(
@@ -160,7 +162,7 @@ export const uploadRecipe = async (newRecipe) => {
     ingredients,
   };
 
-  const data = await sentJSON(`${API_URL}?key=${API_KEY}`, recipe);
+  const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
   state.recipe = createRecipeObject(data);
   addBookmark(state.recipe);
 };

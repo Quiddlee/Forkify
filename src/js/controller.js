@@ -8,6 +8,7 @@ import resultsView from './views/resultsView';
 import paginationView from './views/paginationView';
 import bookmarksView, { BookmarksView } from './views/bookmarksView';
 import addRecipeView from './views/addRecipeView';
+import { MODAL_CLOSE_SEC } from './config';
 
 const controlRecipes = async () => {
   try {
@@ -74,14 +75,29 @@ const controlAddBookmark = () => {
   bookmarksView.render(model.state.bookmarks);
 };
 
-const controlBookmarks = () => {
-  bookmarksView.render(model.state.bookmarks);
-};
+const controlBookmarks = () => bookmarksView.render(model.state.bookmarks);
 
-const createControlAddRecipe = (newRecipe) => {
-  console.log(newRecipe);
+const createControlAddRecipe = async (newRecipe) => {
+  try {
+    // show loading spinner
+    addRecipeView.renderSpinner();
 
-  // upload new recipe data
+    // upload new recipe data
+    await model.uploadRecipe(newRecipe);
+    console.log(model.state.recipe);
+
+    // render recipe
+    recipeView.render(model.state.recipe);
+
+    // success message
+    addRecipeView.renderMessage();
+
+    // close form window
+    setTimeout(() => addRecipeView.toggleWindow(), MODAL_CLOSE_SEC * 1000);
+  } catch (e) {
+    console.error('💥', e);
+    addRecipeView.renderError(e.message);
+  }
 };
 
 const init = () => {

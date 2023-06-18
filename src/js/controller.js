@@ -84,7 +84,6 @@ const createControlAddRecipe = async (newRecipe) => {
 
     // upload new recipe data
     await model.uploadRecipe(newRecipe);
-    console.log(model.state.recipe);
 
     // render recipe
     recipeView.render(model.state.recipe);
@@ -95,7 +94,6 @@ const createControlAddRecipe = async (newRecipe) => {
     // close form window
     setTimeout(() => addRecipeView.toggleWindow(), MODAL_CLOSE_SEC * 1000);
   } catch (e) {
-    console.error('💥', e);
     addRecipeView.renderError(e.message);
   }
 };

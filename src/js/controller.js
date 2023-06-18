@@ -9,6 +9,7 @@ import paginationView from './views/paginationView';
 import bookmarksView, { BookmarksView } from './views/bookmarksView';
 import addRecipeView from './views/addRecipeView';
 import { MODAL_CLOSE_SEC } from './config';
+import { state } from './model';
 
 const controlRecipes = async () => {
   try {
@@ -90,6 +91,12 @@ const createControlAddRecipe = async (newRecipe) => {
 
     // success message
     addRecipeView.renderMessage();
+
+    // render bookmark view
+    bookmarksView.render(state.bookmarks);
+
+    // Change if in the url
+    window.history.pushState(null, '', `#${model.state.recipe.id}`);
 
     // close form window
     setTimeout(() => addRecipeView.toggleWindow(), MODAL_CLOSE_SEC * 1000);

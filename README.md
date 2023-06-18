@@ -3,6 +3,8 @@
 
 **A Recipe Finding Web Application🍕**
 
+**Preview - https://quiddlee.github.io/Forkify**
+
 # Technology Stack
 ### **Developing✅**
 - **JavaScript**
